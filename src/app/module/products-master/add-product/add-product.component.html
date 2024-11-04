@@ -1,0 +1,63 @@
+<p>Add new product works</p>
+
+<form class="addProduct-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h3>Add Product</h3>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name"
+            [ngClass]="{ 'is-invalid': submitted && form.controls['name'].errors }" />
+
+    </mat-form-field>
+    <div *ngIf="submitted && form.controls['name'].hasError('required')" class="invalid-feedback">
+        Name is required
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="price"
+            [ngClass]="{ 'is-invalid': submitted && form.controls['price'].errors }" />
+
+    </mat-form-field>
+    <div *ngIf="submitted && form.controls['price'].hasError('required')" class="invalid-feedback">
+        Price is required
+    </div>
+    <div *ngIf="submitted && form.controls['price'].hasError('pattern')" class="invalid-feedback">
+        Price must be a number
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Purchase Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="purchaseDate"
+            [ngClass]="{ 'is-invalid': submitted && form.controls['purchaseDate'].errors }" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year"></mat-datepicker>
+
+    </mat-form-field>
+    <div *ngIf="submitted && form.controls['purchaseDate'].hasError('required')" class="invalid-feedback">
+        Purchase Date is required
+    </div>
+    <div *ngIf="submitted && form.controls['purchaseDate'].hasError('matDatepickerMin')" class="invalid-feedback">
+        Date must not be before August 1, 2024
+    </div>
+    <div *ngIf="submitted && form.controls['purchaseDate'].hasError('matDatepickerMax')" class="invalid-feedback">
+        Date must not be in the future
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Quantity</mat-label>
+        <input matInput type="number" formControlName="quantity"
+            [ngClass]="{ 'is-invalid': submitted && form.controls['quantity'].errors }" />
+
+    </mat-form-field>
+    <div *ngIf="submitted && f['purchaseDate'].errors" class="invalid-feedback">
+        <div *ngIf="f['purchaseDate'].errors['required']">Purchase Date is required</div>
+        <div *ngIf="f['purchaseDate'].errors['dateOutOfRange']">Purchase Date must be between 1st August 2024 and
+            today.</div>
+    </div>
+
+    <div class="button-container">
+        <button mat-flat-button color="primary" type="submit">Register</button>
+        <button mat-flat-button color="warn" type="button" (click)="onReset()">Reset</button>
+    </div>
+</form>

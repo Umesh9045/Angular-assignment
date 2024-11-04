@@ -1,0 +1,47 @@
+/* Container for the add product form */
+.addProduct-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for each mat-form-field element */
+mat-form-field {
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* Style for the submit and reset buttons */
+button[mat-flat-button] {
+    width: 100%;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+/* Error message styling */
+.invalid-feedback {
+    color: #d32f2f; /* Red color for errors */
+    font-size: 0.875em;
+    /* margin-top: 5px; */
+    text-align: left;
+}
+
+/* Additional styles for button containers if needed */
+.button-container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    /* margin-top: 10px; */
+}

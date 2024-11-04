@@ -1,0 +1,13 @@
+.sidebar-container {
+    height: 100%;
+    margin: 10px;
+    border: 1px solid #555;
+    background: #eee;
+
+    width: auto;
+}
+
+
+mat-drawer-content {
+    padding: 10px;
+}

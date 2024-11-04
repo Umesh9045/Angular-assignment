@@ -1,0 +1,22 @@
+<form class="login-container" (ngSubmit)="onSubmit()">
+    <h3>Login</h3>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Enter the username</mat-label>
+        <input matInput [(ngModel)]="username" name="username" required />
+    </mat-form-field>
+    <!-- <br> -->
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide() ? 'password' : 'text'" [(ngModel)]="password" name="password" required />
+        <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()">
+            <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+    </mat-form-field>
+    <!-- <br> -->
+    <button mat-flat-button [disabled]="!username || !password">
+        <!-- <mat-icon>favorite</mat-icon> -->
+        Submit
+    </button>
+    <p *ngIf="loginFailed" class="error">Invalid credentials, please try again.</p>
+</form>
