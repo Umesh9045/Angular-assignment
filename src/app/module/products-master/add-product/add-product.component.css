@@ -3,12 +3,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 400px;
+    max-width: 700px;
+    /* Increased width for landscape */
     margin: 0 auto;
     padding: 30px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Make the form more compact */
+}
+
+h3 {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.close-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 24px;
+}
+
+.close-icon mat-icon {
+    font-size: 24px;
 }
 
 /* Style for each mat-form-field element */
@@ -26,13 +48,13 @@ button[mat-flat-button] {
 
 /* Error message styling */
 .invalid-feedback {
-    color: #d32f2f; /* Red color for errors */
+    color: #d32f2f;
+    /* Red color for errors */
     font-size: 0.875em;
-    /* margin-top: 5px; */
     text-align: left;
 }
 
-/* Additional styles for button containers if needed */
+/* Additional styles for button containers */
 .button-container {
     display: flex;
     width: 100%;
@@ -40,8 +62,32 @@ button[mat-flat-button] {
     margin-top: 15px;
 }
 
+/* Error styling */
 .error {
     color: red;
     font-size: 0.9em;
-    /* margin-top: 10px; */
+}
+
+/* Landscape styling adjustments */
+@media screen and (orientation: landscape) {
+    .addProduct-container {
+        flex-direction: row;
+        /* Change to row for landscape layout */
+        flex-wrap: wrap;
+        /* Allow wrapping for smaller screens */
+        justify-content: space-between;
+        /* Space out elements */
+    }
+
+    mat-form-field {
+        width: 45%;
+        /* Reduce width of form fields in landscape */
+        margin: 10px;
+        /* Adjust margin for better spacing */
+    }
+
+    button[mat-flat-button] {
+        width: 48%;
+        /* Make buttons take up less space */
+    }
 }

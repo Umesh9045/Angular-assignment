@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../models/product';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @Component({
   selector: 'app-products-master',
@@ -27,7 +29,7 @@ export class ProductsMasterComponent implements AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private dialog: MatDialog) {
     this.loadProductData();
   }
 
@@ -45,6 +47,21 @@ export class ProductsMasterComponent implements AfterViewInit {
       },
       error: (error) => {
         console.error('Error loading product data:', error);
+      }
+    });
+  }
+
+  openAddProductDialog() {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '80%',  // Adjust width as needed
+      disableClose: true // Prevents closing on outside click
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog result:', result);
+        // Refresh data after adding a product, if necessary
+        this.loadProductData();
       }
     });
   }
