@@ -1,9 +1,22 @@
-h3{
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+h3 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
-  table{
-    margin-top: 10px;
-  }
+table {
+  margin-top: 10px;
+}
+
+/* Center-align all cells */
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+
+/* Style for header cells */
+mat-header-cell {
+  font-weight: bold;
+}
+
+
+

@@ -3,3 +3,12 @@ h3{
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+
+mat-header-cell {
+  font-weight: bold;
+}
+
