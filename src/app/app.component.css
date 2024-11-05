@@ -1,16 +1,12 @@
 mat-drawer-container {
     height: 100%;
     margin: 10px;
-
-    /* width: 500px;
-    height: 300px; */
     border: 1px solid #555;
     background: #eee;
     width: auto;
 }
 
 mat-drawer {
-    /* width: auto; */
     width: 250px;
     padding: 20px;
 }

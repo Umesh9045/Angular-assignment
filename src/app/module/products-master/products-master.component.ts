@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from './add-product/add-product.component';
 import { Product } from '../../models/product';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
 
 @Component({
   selector: 'app-products-master',
@@ -24,7 +25,7 @@ export class ProductsMasterComponent implements AfterViewInit {
   private _liveAnnouncer = inject(LiveAnnouncer);
   private http = inject(HttpClient);
 
-  displayedColumns: string[] = ['id', 'name', 'price', 'purchaseDate', 'quantity'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'purchaseDate', 'quantity', 'actions'];
   dataSource = new MatTableDataSource<Product>([]);
   initialProducts: Product[] = []; // Separate array to hold productDetails.json data
   newProducts: Product[] = []; // Array for newly added products
@@ -78,6 +79,42 @@ export class ProductsMasterComponent implements AfterViewInit {
     this.updateTableData();
   }
 
+  openDeleteProductDialog(productId: number){
+    const dialogRef = this.dialog.open(DeleteProductComponent, {
+      width: '80%',  
+      disableClose: true // Prevents closing on outside click
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.deleteProduct(productId);
+      }
+    });
+  }
+
+  editProduct(updatedProduct: Product){
+    console.log(updatedProduct);
+
+    const productIndex = this.newProducts.findIndex(prod => prod.id === updatedProduct.id);
+    if (productIndex > -1) {
+      // Update in newProducts array
+      this.newProducts[productIndex] = updatedProduct;
+    } else {
+      // Update in initialProducts array if it's an original product
+      const initialProductIndex = this.initialProducts.findIndex(prod => prod.id === updatedProduct.id);
+      if (initialProductIndex > -1) {
+        this.initialProducts[initialProductIndex] = updatedProduct;
+      }
+    }
+    this.updateTableData();
+  }
+
+  deleteProduct(productId: number) {
+    this.newProducts = this.newProducts.filter(prod => prod.id !== productId);
+    this.initialProducts = this.initialProducts.filter(prod => prod.id !== productId);
+    this.updateTableData();
+  }
+  
   updateTableData() {
     // Combine initial products with new products without re-adding previously added products
     this.dataSource.data = [...this.initialProducts, ...this.newProducts];
