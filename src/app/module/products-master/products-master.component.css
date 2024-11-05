@@ -18,5 +18,7 @@ mat-header-cell {
   font-weight: bold;
 }
 
-
+button{
+  cursor: pointer;
+}
 

@@ -37,3 +37,7 @@ mat-drawer-content {
 .nav-spacer {
     flex: 1 1 auto;
 }
+
+button{
+    cursor: pointer;
+}

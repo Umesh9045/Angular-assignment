@@ -91,3 +91,7 @@ button[mat-flat-button] {
         /* Make buttons take up less space */
     }
 }
+
+button{
+    cursor: pointer;
+}
