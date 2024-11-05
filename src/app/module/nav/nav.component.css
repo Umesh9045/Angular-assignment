@@ -1,0 +1,56 @@
+.activebutton {
+    color: purple;
+    text-decoration:underline !important;
+  }
+
+/* Sticky Toolbar */
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    color: purple;
+}
+
+/* Main container setup */
+mat-drawer-container {
+    height: 100vh;
+    margin: 10px;
+    margin-top: 64px; 
+    border: 1px solid #555;
+    background: #eee;
+    width: auto;
+}
+
+/* Sticky Sidebar */
+mat-drawer {
+    position: fixed;
+    top: 66px; /* Offset for the toolbar height */
+    height: calc(100vh - 64px); /* Full height minus the toolbar */
+    width: 250px;
+    padding: 20px;
+    
+}
+mat-drawer a {
+    text-decoration: none;
+}
+/* Scrollable content */
+mat-drawer-content {
+    padding: 15px;
+    /* width: auto; */
+    /* overflow-y: auto; */
+    /* height: calc(100vh - 64px); Full height minus the toolbar */
+}
+
+.nav-spacer {
+    flex: 1 1 auto;
+}
+
+button{
+    cursor: pointer;
+}
+
+.user-icon, .menu-icon{
+    color: purple;
+}

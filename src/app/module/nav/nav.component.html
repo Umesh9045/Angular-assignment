@@ -1,0 +1,35 @@
+<!-- <nav>
+    <a class="button" routerLink="/dashboard" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
+        Dashboard
+    </a> |
+    <a class="button" routerLink="/products" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
+        Products-master
+    </a>
+</nav> -->
+
+<mat-toolbar>
+    <button mat-icon-button class="menu-icon" aria-label="Example icon-button with menu icon"
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Angular Assignment</span>
+    <span class="nav-spacer"></span>
+  
+    <button mat-icon-button class="user-icon" aria-label="Example icon-button with account_circle icon">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+    <mat-drawer #drawer mode="side">
+        <mat-list>
+            <mat-list-item><a routerLink="/dashboard" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
+                    Dashboard
+                </a></mat-list-item>
+            <mat-list-item><a routerLink="/products" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
+                    Products-master
+                </a></mat-list-item>
+        </mat-list>
+    </mat-drawer>
+    <mat-drawer-content><router-outlet /></mat-drawer-content>
+</mat-drawer-container>

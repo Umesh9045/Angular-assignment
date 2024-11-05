@@ -4,6 +4,10 @@
   
    */
 
+   h3 {
+    color: purple;
+   }
+
    button{
     cursor: pointer;
 }
