@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core'; // Ensure this is imported
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-product',
@@ -35,7 +36,7 @@ export class AddProductComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<AddProductComponent>) {}
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<AddProductComponent>) { }
 
   // Validator function to enforce date range between 1st August 2024 and today
   dateRangeValidator(): ValidatorFn {
@@ -71,10 +72,18 @@ export class AddProductComponent implements OnInit {
       return;
     }
 
-    console.log('Form Submitted:', JSON.stringify(this.form.value, null, 2));
-
-    // Close the dialog and pass the form data back
-    this.dialogRef.close(this.form.value);
+    // console.log('Form Submitted:', JSON.stringify(this.form.value, null, 2));
+    const newProduct = this.form.value;
+    // this.http.post('http://localhost:4200/products', newProduct).subscribe({
+    //   next: () => {
+    //     console.log('Product added successfully' + newProduct);
+    //     alert('Product added sucessfully');
+    //     this.dialogRef.close(newProduct); // Pass data back to the parent component
+    //   },
+    //   error: (error) => console.error('Error adding product:', error)
+    // });
+    alert('Product added successfully');
+    this.dialogRef.close(newProduct);
   }
 
   onReset(): void {

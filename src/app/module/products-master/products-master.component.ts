@@ -9,9 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../../models/product';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from './add-product/add-product.component';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-products-master',
@@ -26,6 +26,8 @@ export class ProductsMasterComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['id', 'name', 'price', 'purchaseDate', 'quantity'];
   dataSource = new MatTableDataSource<Product>([]);
+  initialProducts: Product[] = []; // Separate array to hold productDetails.json data
+  newProducts: Product[] = []; // Array for newly added products
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -40,10 +42,11 @@ export class ProductsMasterComponent implements AfterViewInit {
   loadProductData() {
     this.http.get<Product[]>('assets/productDetails.json').subscribe({
       next: (data) => {
-        this.dataSource.data = data.map(item => ({
+        this.initialProducts = data.map(item => ({
           ...item,
           purchaseDate: new Date(item.purchaseDate)
         }));
+        this.updateTableData();
       },
       error: (error) => {
         console.error('Error loading product data:', error);
@@ -53,17 +56,37 @@ export class ProductsMasterComponent implements AfterViewInit {
 
   openAddProductDialog() {
     const dialogRef = this.dialog.open(AddProductComponent, {
-      width: '80%',  // Adjust width as needed
+      width: '80%',  
       disableClose: true // Prevents closing on outside click
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Dialog result:', result);
-        // Refresh data after adding a product, if necessary
-        this.loadProductData();
+        this.addNewProduct(result);
       }
     });
+  }
+
+  addNewProduct(newProduct: Product) {
+    const uniqueProduct = {
+      ...newProduct,
+      id: this.generateNewId(),
+      purchaseDate: new Date(newProduct.purchaseDate)
+    };
+
+    this.newProducts.push(uniqueProduct);
+    this.updateTableData();
+  }
+
+  updateTableData() {
+    // Combine initial products with new products without re-adding previously added products
+    this.dataSource.data = [...this.initialProducts, ...this.newProducts];
+  }
+
+  generateNewId(): number {
+    // Ensure unique IDs by finding the highest ID from both initial and new products
+    const allProducts = [...this.initialProducts, ...this.newProducts];
+    return allProducts.length > 0 ? Math.max(...allProducts.map(p => p.id)) + 1 : 1;
   }
 
   announceSortChange(sortState: Sort) {
