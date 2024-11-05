@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from './add-product/add-product.component';
 import { Product } from '../../models/product';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @Component({
   selector: 'app-products-master',
@@ -57,7 +58,7 @@ export class ProductsMasterComponent implements AfterViewInit {
 
   openAddProductDialog() {
     const dialogRef = this.dialog.open(AddProductComponent, {
-      width: '80%',  
+      width: '80%',
       disableClose: true // Prevents closing on outside click
     });
 
@@ -79,23 +80,24 @@ export class ProductsMasterComponent implements AfterViewInit {
     this.updateTableData();
   }
 
-  openDeleteProductDialog(productId: number){
-    const dialogRef = this.dialog.open(DeleteProductComponent, {
-      width: '80%',  
-      disableClose: true // Prevents closing on outside click
+  openEditProductDialog(productDetails: Product) {
+    const dialogRef = this.dialog.open(EditProductComponent, {
+      width: '80%',
+      disableClose: true, // Prevents closing on outside click
+      data: productDetails // Pass product details to dialog
     });
 
-    dialogRef.afterClosed().subscribe((result: boolean) => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteProduct(productId);
+        result.id = productDetails.id;
+        this.editProduct(result, productDetails.id);
       }
     });
   }
 
-  editProduct(updatedProduct: Product){
+  editProduct(updatedProduct: Product, productID: number) {
     console.log(updatedProduct);
-
-    const productIndex = this.newProducts.findIndex(prod => prod.id === updatedProduct.id);
+    const productIndex = this.newProducts.findIndex(prod => prod.id === productID);
     if (productIndex > -1) {
       // Update in newProducts array
       this.newProducts[productIndex] = updatedProduct;
@@ -109,12 +111,25 @@ export class ProductsMasterComponent implements AfterViewInit {
     this.updateTableData();
   }
 
+  openDeleteProductDialog(productId: number) {
+    const dialogRef = this.dialog.open(DeleteProductComponent, {
+      width: '80%',
+      disableClose: true // Prevents closing on outside click
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.deleteProduct(productId);
+      }
+    });
+  }
+
   deleteProduct(productId: number) {
     this.newProducts = this.newProducts.filter(prod => prod.id !== productId);
     this.initialProducts = this.initialProducts.filter(prod => prod.id !== productId);
     this.updateTableData();
   }
-  
+
   updateTableData() {
     // Combine initial products with new products without re-adding previously added products
     this.dataSource.data = [...this.initialProducts, ...this.newProducts];
