@@ -52,7 +52,7 @@
     </div>
 
     <div class="button-container">
-        <button mat-flat-button color="primary" type="submit">Save</button>
-        <button mat-flat-button color="warn" type="button" (click)="onReset()">Reset</button>
+        <button mat-flat-button color="primary" type="submit" matTooltip="Are you sure to save details?"  matTooltipPosition="above">Save</button>
+        <button mat-flat-button color="warn" type="button" (click)="onReset()"  matTooltip="Reset to default"  matTooltipPosition="above">Reset</button>
     </div>
 </form>

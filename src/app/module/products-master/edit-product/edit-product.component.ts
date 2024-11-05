@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../../models/product';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-edit-product',
@@ -25,6 +26,7 @@ import { Product } from '../../../models/product';
     MatDatepickerModule,
     MatNativeDateModule, // Add this to the imports array
     ReactiveFormsModule,
+    MatTooltipModule,
     CommonModule
   ],
   providers: [provideNativeDateAdapter()],
