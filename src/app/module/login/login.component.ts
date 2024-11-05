@@ -8,7 +8,6 @@ import {MatDividerModule} from '@angular/material/divider';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -31,14 +30,10 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    // Check if the credentials match "admin" for both fields
     if (this.username === 'admin' && this.password === 'admin') {
-      // Reset login failed message, if any
       this.loginFailed = false;
-      // Navigate to the dashboard
       this.router.navigate(['/dashboard']);
     } else {
-      // Show login failed message
       this.loginFailed = true;
     }
   }
