@@ -4,10 +4,11 @@
     <div class="col-md-12">
         <!-- <a routerLink="add-product" mat-flat-button>Add New Product</a> -->
         <button mat-flat-button color="primary" (click)="openAddProductDialog()">Add New Product</button>
+        <input matInput type="text" [(ngModel)]="searchValue" placeholder="Search.." class="search-input" (keyup)="applyFilter()">
     </div>
 </div>
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">

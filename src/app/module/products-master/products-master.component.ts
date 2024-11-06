@@ -15,17 +15,21 @@ import { Product } from '../../models/product';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-products-master',
   standalone: true,
-  imports: [MatTableModule, MatSortModule, CommonModule, MatButtonModule, MatDividerModule, MatIconModule, RouterLinkActive, RouterLink, RouterOutlet,  MatPaginator, MatPaginatorModule],
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatTableModule, MatSortModule, CommonModule, MatButtonModule, MatDividerModule, MatIconModule, RouterLinkActive, RouterLink, RouterOutlet,  MatPaginator, MatPaginatorModule],
   templateUrl: './products-master.component.html',
   styleUrls: ['./products-master.component.css']
 })
 export class ProductsMasterComponent implements AfterViewInit {
   private _liveAnnouncer = inject(LiveAnnouncer);
   private http = inject(HttpClient);
+  searchValue = '';
 
   displayedColumns: string[] = ['id', 'name', 'price', 'purchaseDate', 'quantity', 'actions'];
   dataSource = new MatTableDataSource<Product>([]);
@@ -37,6 +41,16 @@ export class ProductsMasterComponent implements AfterViewInit {
 
   constructor(private router: Router, private dialog: MatDialog) {
     this.loadProductData();
+    this.dataSource.filterPredicate = (data: Product, filter: string) => {
+      const searchTerm = filter.trim().toLowerCase();
+      return (
+        data.id.toString().includes(searchTerm) ||
+        data.name.toLowerCase().includes(searchTerm) ||
+        data.price.toString().includes(searchTerm) ||
+        data.purchaseDate.toDateString().includes(searchTerm) ||
+        data.quantity.toString().includes(searchTerm)
+      );
+    };
   }
 
   ngAfterViewInit() {
@@ -150,5 +164,9 @@ export class ProductsMasterComponent implements AfterViewInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  applyFilter() {
+    this.dataSource.filter = this.searchValue.trim().toLowerCase();
   }
 }

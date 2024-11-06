@@ -22,3 +22,20 @@ button{
   cursor: pointer;
 }
 
+.search-input {
+  background-color: #e0e2ec;
+  border-radius: 50px;
+  height: 30px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none; 
+  transition: box-shadow 0.1s ease; 
+  position: relative;
+}
+
+.search-input:focus {
+  width: 20%;
+  box-shadow: 0 0 0 2px purple; 
+  outline: none; 
+}
+
