@@ -1,12 +1,13 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
+import { ChangeDetectionStrategy, Component, signal, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,14 @@ export class LoginComponent {
   password: string = '';
   loginFailed: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) { }
+
+  ngOnInit() {
+    // Redirect to dashboard if the user is already authenticated
+    if (this.authService.checkAuthentication()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
@@ -30,7 +38,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.username === 'admin' && this.password === 'admin') {
+    if (this.authService.login(this.username, this.password)) {
       this.loginFailed = false;
       this.router.navigate(['/dashboard']);
     } else {
