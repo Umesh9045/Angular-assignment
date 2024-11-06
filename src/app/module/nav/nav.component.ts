@@ -20,15 +20,17 @@ export class NavComponent {
   constructor(private dialog: MatDialog, private authService: AuthService) { }
 
   openLogOutDialog() {
-    const dialogRef = this.dialog.open(LogoutComponent, {
-      width: '80%',
-      disableClose: true // Prevents closing on outside click
-    });
+    if (this.authService.isAuthenticated) {
+      const dialogRef = this.dialog.open(LogoutComponent, {
+        width: '80%',
+        disableClose: true // Prevents closing on outside click
+      });
 
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result) {
-        this.authService.logout();
-      }
-    });
+      dialogRef.afterClosed().subscribe((result: boolean) => {
+        if (result) {
+          this.authService.logout();
+        }
+      });
+    }
   }
 }
