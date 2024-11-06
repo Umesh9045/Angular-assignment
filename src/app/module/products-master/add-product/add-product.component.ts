@@ -11,7 +11,7 @@ import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-add-product',
