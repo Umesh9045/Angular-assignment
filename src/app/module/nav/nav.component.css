@@ -39,7 +39,7 @@ mat-drawer a {
 mat-drawer-content {
     padding: 15px;
     /* width: auto; */
-    /* overflow-y: auto; */
+    overflow-y: hidden;
     /* height: calc(100vh - 64px); Full height minus the toolbar */
 }
 

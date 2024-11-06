@@ -14,11 +14,12 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { Product } from '../../models/product';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products-master',
   standalone: true,
-  imports: [MatTableModule, MatSortModule, CommonModule, MatButtonModule, MatDividerModule, MatIconModule, RouterLinkActive, RouterLink, RouterOutlet],
+  imports: [MatTableModule, MatSortModule, CommonModule, MatButtonModule, MatDividerModule, MatIconModule, RouterLinkActive, RouterLink, RouterOutlet,  MatPaginator, MatPaginatorModule],
   templateUrl: './products-master.component.html',
   styleUrls: ['./products-master.component.css']
 })
@@ -32,6 +33,7 @@ export class ProductsMasterComponent implements AfterViewInit {
   newProducts: Product[] = []; // Array for newly added products
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private router: Router, private dialog: MatDialog) {
     this.loadProductData();
@@ -39,6 +41,7 @@ export class ProductsMasterComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   loadProductData() {

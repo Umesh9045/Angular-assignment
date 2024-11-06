@@ -1,0 +1,11 @@
+<h4>Are you sure to logout?</h4>
+
+<div class="confirmation-dialog-container">
+    <!-- <p>This action cannot be undo.</p> -->
+    
+    <!-- Button Container -->
+    <div class="button-container">
+        <button mat-flat-button color="warn" type="button" (click)="onConfirm()" matTooltip="This action cannot be undo"  matTooltipPosition="above">Confirm</button>
+        <button mat-flat-button color="primary" type="button" (click)="dialogRef.close()">Cancel</button>
+    </div>
+</div>
