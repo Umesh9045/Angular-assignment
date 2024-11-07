@@ -38,6 +38,8 @@ export class EditProductComponent implements OnInit {
   readonly startDate = new Date(2024, 7, 1);  // 1st August 2024
   form: FormGroup = new FormGroup({});
   submitted = false;
+  readonly minDate = new Date(2024, 7, 1);
+  readonly maxDate = new Date();
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<EditProductComponent>, @Inject(MAT_DIALOG_DATA) public data: Product) { }
 

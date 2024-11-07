@@ -29,7 +29,7 @@
 
     <mat-form-field appearance="outline" class="full-width">
         <mat-label>Purchase Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="purchaseDate"
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="purchaseDate"
             [ngClass]="{ 'is-invalid': submitted && form.controls['purchaseDate'].errors }" />
         <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -37,9 +37,6 @@
     </mat-form-field>
     <div *ngIf="submitted && form.controls['purchaseDate'].hasError('required')" class="invalid-feedback">
         Purchase Date is required
-    </div>
-    <div *ngIf="submitted && form.controls['purchaseDate'].hasError('dateOutOfRange')" class="invalid-feedback">
-        Purchase Date must be between 1st August 2024 and today.
     </div>
 
     <mat-form-field appearance="outline" class="full-width">
@@ -52,7 +49,9 @@
     </div>
 
     <div class="button-container">
-        <button mat-flat-button color="primary" type="submit"  matTooltip="Are you sure to add?"  matTooltipPosition="above">Add</button>
-        <button mat-flat-button color="warn" type="button" (click)="onReset()"  matTooltip="Reset to default"  matTooltipPosition="above">Reset</button>
+        <button mat-flat-button color="primary" type="submit" matTooltip="Are you sure to add?"
+            matTooltipPosition="above">Add</button>
+        <button mat-flat-button color="warn" type="button" (click)="onReset()" matTooltip="Reset to default"
+            matTooltipPosition="above">Reset</button>
     </div>
 </form>

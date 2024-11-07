@@ -39,3 +39,6 @@ button{
   outline: none; 
 }
 
+.search-input::placeholder {
+  font-weight: 550;
+}

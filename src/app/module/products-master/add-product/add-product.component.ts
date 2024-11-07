@@ -37,28 +37,16 @@ export class AddProductComponent implements OnInit {
   readonly startDate = new Date(2024, 7, 1);  // 1st August 2024
   form: FormGroup = new FormGroup({});
   submitted = false;
+  readonly minDate = new Date(2024, 7, 1);
+  readonly maxDate = new Date();
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<AddProductComponent>) { }
 
-  // Validator function to enforce date range between 1st August 2024 and today
-  dateRangeValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const selectedDate = new Date(control.value);
-      const minDate = new Date(2024, 7, 1);
-      const maxDate = new Date(); // Today's date
-
-      if (selectedDate < minDate || selectedDate > maxDate) {
-        return { dateOutOfRange: true };
-      }
-      return null;
-    };
-  }
-
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
-      purchaseDate: ['', [Validators.required, this.dateRangeValidator()]],
+      purchaseDate: ['', [Validators.required]],
       quantity: ['', [Validators.required]]
     });
   }
