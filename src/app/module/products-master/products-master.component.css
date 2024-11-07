@@ -41,4 +41,5 @@ button{
 
 .search-input::placeholder {
   font-weight: 550;
+  font-size: 14px;
 }

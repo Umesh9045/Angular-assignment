@@ -23,7 +23,6 @@ export const routes: Routes = [
   {
     path: 'products',
     component: ProductsMasterComponent,
-
     canActivate: [AuthGuard],
     // children: [
     //   {
@@ -35,8 +34,10 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
+    // component: DashboardComponent,
+    redirectTo: '/dashboard', 
+    pathMatch: 'full' 
+    // canActivate: [AuthGuard]
   }
 ];
 
