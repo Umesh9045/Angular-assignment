@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "S24 FE",
+      "price": 39999,
+      "purchaseDate": "2024-10-04",
+      "quantity": 50
+    },
+    {
+      "id": 2,
+      "name": "iPhone 15",
+      "price": 79999,
+      "purchaseDate": "2024-10-04",
+      "quantity": 30
+    },
+    {
+      "id": 3,
+      "name": "Pixel 8 Pro",
+      "price": 69999,
+      "purchaseDate": "2024-10-04",
+      "quantity": 20
+    },
+    {
+      "id": 4,
+      "name": "Nothing Phone 3",
+      "price": 54999,
+      "purchaseDate": "2024-10-04",
+      "quantity": 40
+    },
+    {
+      "id": 5,
+      "name": "Xiaomi 13 Ultra",
+      "price": 59999,
+      "purchaseDate": "2024-10-04",
+      "quantity": 25
+    }
+  ]
+  

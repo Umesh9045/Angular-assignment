@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "name": "Aarav Sharma",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "postal": 400001
+    },
+    {
+      "id": 2,
+      "name": "Vanya Patel",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "postal": 380001
+    },
+    {
+      "id": 3,
+      "name": "Vihaan Singh",
+      "state": "Uttar Pradesh",
+      "city": "Lucknow",
+      "postal": 226001
+    },
+    {
+      "id": 4,
+      "name": "Anaya Verma",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "postal": 110001
+    },
+    {
+      "id": 5,
+      "name": "Reyansh Iyer",
+      "state": "Karnataka",
+      "city": "Bengaluru",
+      "postal": 560001
+    },
+    {
+      "id": 6,
+      "name": "Diya Reddy",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "postal": 500001
+    },
+    {
+      "id": 7,
+      "name": "Ayaan Khan",
+      "state": "West Bengal",
+      "city": "Kolkata",
+      "postal": 700001
+    },
+    {
+      "id": 8,
+      "name": "Navya Gupta",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "postal": 302001
+    },
+    {
+      "id": 9,
+      "name": "Kabir Joshi",
+      "state": "Madhya Pradesh",
+      "city": "Indore",
+      "postal": 452001
+    },
+    {
+      "id": 10,
+      "name": "Saanvi Mehta",
+      "state": "Tamil Nadu",
+      "city": "Chennai",
+      "postal": 600001
+    }
+  ]
+  
