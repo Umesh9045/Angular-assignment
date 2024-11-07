@@ -23,6 +23,7 @@ export const routes: Routes = [
   {
     path: 'products',
     component: ProductsMasterComponent,
+
     canActivate: [AuthGuard],
     // children: [
     //   {
@@ -31,6 +32,11 @@ export const routes: Routes = [
     //     canActivate: [AuthGuard],
     //   }
     // ]
+  },
+  {
+    path: '**',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
