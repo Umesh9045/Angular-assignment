@@ -83,7 +83,7 @@ export class AddProductComponent implements OnInit {
     this._snackBar.open('Product added successfully!', 'Okay', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      duration: 5000
+      duration: 3000
     });
   }
 

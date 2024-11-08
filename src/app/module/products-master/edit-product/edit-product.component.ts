@@ -99,7 +99,7 @@ export class EditProductComponent implements OnInit {
     this._snackBar.open('Product edited successfully!', 'Okay', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      duration: 5000
+      duration: 3000
     });
   }
 }

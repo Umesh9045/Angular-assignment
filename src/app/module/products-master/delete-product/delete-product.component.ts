@@ -23,7 +23,7 @@ export class DeleteProductComponent {
     this._snackBar.open('Product deleted successfully!', 'Okay', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      duration: 5000
+      duration: 3000
     });
   }
 }
