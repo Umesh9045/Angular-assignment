@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../../models/product';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-product',
@@ -41,7 +42,7 @@ export class EditProductComponent implements OnInit {
   readonly minDate = new Date(2024, 7, 1);
   readonly maxDate = new Date();
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<EditProductComponent>, @Inject(MAT_DIALOG_DATA) public data: Product) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<EditProductComponent>, @Inject(MAT_DIALOG_DATA) public data: Product, private _snackBar: MatSnackBar) { }
 
   // Validator function to enforce date range between 1st August 2024 and today
   dateRangeValidator(): ValidatorFn {
@@ -79,8 +80,9 @@ export class EditProductComponent implements OnInit {
     }
 
     const updatedProduct = this.form.value;
-    alert('Product edited successfully');
+    // alert('Product edited successfully');
     this.dialogRef.close(updatedProduct);
+    this.openSnackBar()
   }
 
   onReset(): void {
@@ -92,4 +94,12 @@ export class EditProductComponent implements OnInit {
       quantity: this.data.quantity
     });
   }  
+
+  openSnackBar() {
+    this._snackBar.open('Product edited successfully!', 'Okay', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 5000
+    });
+  }
 }

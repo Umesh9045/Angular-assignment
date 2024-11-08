@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-product',
@@ -40,9 +41,9 @@ export class AddProductComponent implements OnInit {
   readonly minDate = new Date(2024, 7, 1);
   readonly maxDate = new Date();
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<AddProductComponent>) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, public dialogRef: MatDialogRef<AddProductComponent>, private _snackBar: MatSnackBar) { }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
@@ -72,8 +73,18 @@ export class AddProductComponent implements OnInit {
     //   },
     //   error: (error) => console.error('Error adding product:', error)
     // });
-    alert('Product added successfully');
+    // alert('Product added successfully');
+
     this.dialogRef.close(newProduct);
+    this.openSnackBar();
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Product added successfully!', 'Okay', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 5000
+    });
   }
 
   onReset(): void {
